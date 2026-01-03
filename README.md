@@ -58,19 +58,29 @@ sudo SENTINELONE_SITE_TOKEN="your_token" bash -c "$(curl -fsSL https://raw.githu
 
 SentinelOne requires Full Disk Access (FDA) for complete endpoint protection.
 
-### Automatic FDA via Rippling MDM (Recommended)
+### ✅ Automatic FDA Installation
 
-1. Download the PPPC profile: [SentinelOne-PPPC-Profile.mobileconfig](https://github.com/TG-orlando/sentinelone-deployment-mac/blob/main/SentinelOne-PPPC-Profile.mobileconfig)
-2. Upload to Rippling MDM as a Configuration Profile
-3. Deploy to macOS devices along with the installation script
-4. FDA will be granted automatically
+**The installation script automatically installs the PPPC profile!**
 
-### Manual FDA Grant
+When you run the one-liner, the script will:
+1. Download the PPPC profile from GitHub
+2. Install it using `profiles install` command
+3. Grant Full Disk Access automatically
+4. No manual steps or separate MDM profile deployment needed
 
-If not using MDM profile:
+### Manual FDA Grant (Fallback)
+
+If automatic installation fails (rare):
 1. System Settings > Privacy & Security > Full Disk Access
 2. Click '+' and add: `/Library/Sentinel/sentinel-agent.bundle`
 3. Enable the toggle
+
+### Alternative: Deploy PPPC Profile via MDM
+
+You can also deploy the profile separately via Rippling MDM:
+1. Download: [SentinelOne-PPPC-Profile.mobileconfig](https://github.com/TG-orlando/sentinelone-deployment-mac/blob/main/SentinelOne-PPPC-Profile.mobileconfig)
+2. Upload to Rippling MDM
+3. Deploy before running installation script
 
 ## Prerequisites
 
@@ -82,7 +92,7 @@ If not using MDM profile:
 
 2. **Configure Site Token** (see Configuration section above)
 
-3. **Deploy PPPC Profile** (for automatic Full Disk Access)
+✅ **That's it!** The PPPC profile installs automatically during the installation.
 
 ## Features
 

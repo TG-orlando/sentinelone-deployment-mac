@@ -108,6 +108,31 @@ main() {
     log SUCCESS "Site token configured: ${SITE_TOKEN:0:20}... (source: $token_source)"
     echo ""
 
+    # Install PPPC Profile for Full Disk Access
+    log INFO "Installing Full Disk Access (FDA) profile..."
+    PPPC_URL="https://raw.githubusercontent.com/TG-orlando/sentinelone-deployment-mac/main/SentinelOne-PPPC-Profile.mobileconfig"
+    PPPC_PATH="/tmp/SentinelOne-PPPC.mobileconfig"
+
+    if curl -L -f -o "$PPPC_PATH" "$PPPC_URL" --connect-timeout 30 --max-time 60 2>/dev/null; then
+        log SUCCESS "PPPC profile downloaded"
+
+        # Install the profile
+        if profiles install -path "$PPPC_PATH" 2>&1 | tee -a "$LOG_PATH"; then
+            log SUCCESS "Full Disk Access profile installed automatically"
+            log INFO "SentinelOne will have FDA permissions immediately"
+        else
+            log WARNING "Could not install PPPC profile automatically"
+            log WARNING "FDA may need to be granted manually after installation"
+        fi
+
+        # Clean up profile file
+        rm -f "$PPPC_PATH" 2>/dev/null || true
+    else
+        log WARNING "Could not download PPPC profile from GitHub"
+        log WARNING "Full Disk Access will need to be granted manually"
+    fi
+    echo ""
+
     # Check for existing SentinelOne installation
     log INFO "Checking for existing SentinelOne installation..."
     if [ -d "/Library/Sentinel" ] || [ -d "/Applications/SentinelOne" ]; then
@@ -268,16 +293,18 @@ EOF
     echo ""
 
     # Check Full Disk Access
-    log INFO "Checking Full Disk Access..."
-    log WARNING "Full Disk Access (FDA) is required for complete protection"
-    log INFO ""
-    log INFO "For automatic FDA deployment, use a PPPC profile via Rippling MDM"
-    log INFO "Profile provided in: SentinelOne-PPPC-Profile.mobileconfig"
-    log INFO ""
-    log INFO "Or grant manually:"
-    log INFO "  1. System Settings > Privacy & Security > Full Disk Access"
-    log INFO "  2. Click '+' and add: /Library/Sentinel/sentinel-agent.bundle"
-    log INFO "  3. Enable the toggle"
+    log INFO "Verifying Full Disk Access..."
+
+    # Check if PPPC profile is installed
+    if profiles show -type configuration | grep -q "com.theguarantors.sentinelone.pppc" 2>/dev/null; then
+        log SUCCESS "PPPC profile is installed - Full Disk Access granted automatically"
+    else
+        log WARNING "PPPC profile not detected"
+        log INFO "Full Disk Access may need manual configuration:"
+        log INFO "  1. System Settings > Privacy & Security > Full Disk Access"
+        log INFO "  2. Click '+' and add: /Library/Sentinel/sentinel-agent.bundle"
+        log INFO "  3. Enable the toggle"
+    fi
     echo ""
 
     # Cleanup
@@ -292,11 +319,15 @@ EOF
     log INFO "Log file: $LOG_PATH"
     log INFO "Install log: $INSTALL_LOG"
     log INFO ""
+    log INFO "What was installed:"
+    log INFO "  ✅ SentinelOne Agent (auto-activated with site token)"
+    log INFO "  ✅ Full Disk Access PPPC Profile (automatic FDA)"
+    log INFO ""
     log INFO "Next steps:"
-    log INFO "1. Deploy PPPC profile for Full Disk Access (via Rippling)"
-    log INFO "2. Verify agent in SentinelOne console"
-    log INFO "3. Check agent status: https://usea1-017.sentinelone.net"
-    log INFO "4. Agent should auto-activate with the site token"
+    log INFO "1. Verify agent in SentinelOne console"
+    log INFO "2. Check agent status: https://usea1-017.sentinelone.net"
+    log INFO "3. Agent should appear online within 5 minutes"
+    log INFO "4. Full Disk Access is granted automatically"
     log INFO "========================================="
 
     # Copy log to system log location
