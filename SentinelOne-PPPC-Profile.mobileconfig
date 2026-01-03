@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>Privacy Preferences Policy Control for SentinelOne</string>
+			<key>PayloadDisplayName</key>
+			<string>SentinelOne Privacy Preferences</string>
+			<key>PayloadIdentifier</key>
+			<string>com.sentinelone.privacy.pppc</string>
+			<key>PayloadOrganization</key>
+			<string>The Guarantors</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>8E7E3E7E-3E7E-4E7E-8E7E-3E7E4E7E8E7E</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.sentinelone.SentinelAgent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8TH9M477F3"</string>
+						<key>Comment</key>
+						<string>Allow SentinelOne Agent Full Disk Access</string>
+						<key>Identifier</key>
+						<string>com.sentinelone.SentinelAgent</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.sentinelone.SentinelStaticEngine" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8TH9M477F3"</string>
+						<key>Comment</key>
+						<string>Allow SentinelOne Static Engine Full Disk Access</string>
+						<key>Identifier</key>
+						<string>com.sentinelone.SentinelStaticEngine</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+				</array>
+				<key>SystemPolicyDesktopFolder</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.sentinelone.SentinelAgent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8TH9M477F3"</string>
+						<key>Comment</key>
+						<string>Allow SentinelOne Agent Desktop Access</string>
+						<key>Identifier</key>
+						<string>com.sentinelone.SentinelAgent</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+				</array>
+				<key>SystemPolicyDocumentsFolder</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.sentinelone.SentinelAgent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8TH9M477F3"</string>
+						<key>Comment</key>
+						<string>Allow SentinelOne Agent Documents Access</string>
+						<key>Identifier</key>
+						<string>com.sentinelone.SentinelAgent</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+				</array>
+				<key>SystemPolicyDownloadsFolder</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.sentinelone.SentinelAgent" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "8TH9M477F3"</string>
+						<key>Comment</key>
+						<string>Allow SentinelOne Agent Downloads Access</string>
+						<key>Identifier</key>
+						<string>com.sentinelone.SentinelAgent</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>StaticCode</key>
+						<false/>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Privacy Preferences Policy Control for SentinelOne EDR</string>
+	<key>PayloadDisplayName</key>
+	<string>SentinelOne Full Disk Access</string>
+	<key>PayloadIdentifier</key>
+	<string>com.theguarantors.sentinelone.pppc</string>
+	<key>PayloadOrganization</key>
+	<string>The Guarantors</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>1A2B3C4D-5E6F-7G8H-9I0J-1K2L3M4N5O6P</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
